@@ -1,10 +1,7 @@
 import antfu from "@antfu/eslint-config";
 
 export default antfu({
-  formatters: {
-    css: true,
-    markdown: "prettier",
-  },
+  formatters: true,
   vue: true,
   stylistic: {
     indent: 2,
