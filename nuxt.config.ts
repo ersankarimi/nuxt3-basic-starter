@@ -10,6 +10,14 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/seo",
   ],
+  // Nuxt TypeScript Configuration (https://nuxt.com/docs/guide/concepts/typescript)
+  typescript: {
+    strict: true,
+    typeCheck: false,
+    tsConfig: {
+      // exclude: ["./github/workflows"],
+    },
+  },
   // Nuxt Components Custom Directories (https://nuxt.com/docs/guide/directory-structure/components#custom-directories)
   components: [
     {
