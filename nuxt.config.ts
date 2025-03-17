@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/seo",
   ],
+  // Nuxt SPA Loading Template (https://nuxt.com/docs/api/nuxt-config#spaloadingtemplate)
+  spaLoadingTemplate: true,
   // Nuxt SSR Configuration (https://nuxt.com/docs/api/nuxt-config#ssr)
   ssr: false,
   // Nuxt TypeScript Configuration (https://nuxt.com/docs/guide/concepts/typescript)
@@ -18,6 +20,18 @@ export default defineNuxtConfig({
     typeCheck: false,
     tsConfig: {
       // exclude: ["./github/workflows"],
+    },
+  },
+  // Nuxt App Configuration (https://nuxt.com/docs/api/nuxt-config#app-1)
+  app: {
+    head: {
+      titleTemplate: "%s %separator %siteName",
+      // link: [
+      //   { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      // ],
+      htmlAttrs: {
+        lang: "id",
+      },
     },
   },
   // Nuxt Components Custom Directories (https://nuxt.com/docs/guide/directory-structure/components#custom-directories)
@@ -30,10 +44,6 @@ export default defineNuxtConfig({
     //   path: "~/components/common",
     //   prefix: "Common",
     // },
-    // {
-    //   path: "~/components/partials",
-    //   prefix: "Part",
-    // },
   ],
   // Nuxt Runtime Config (https://nuxt.com/docs/guide/going-further/runtime-config)
   runtimeConfig: {
@@ -43,13 +53,24 @@ export default defineNuxtConfig({
   },
   // Nuxt Site Configuration (https://nuxtseo.com/docs/site-config/getting-started/introduction)
   site: {
-    indexable: process.env.NUXT_SITE_ENV === "production",
+    // enabled: false,
+    // * DEFAULT: siteConfig.env === 'production' || process.env.NODE_ENV === 'production'
+    // indexable: process.env.NUXT_SITE_ENV === "production",
+    // * DEFAULT: siteName.env || process.env.NUXT_SITE_NAME
+    // name: process.env.NUXT_SITE_NAME,
+    defaultLocale: "id",
   },
   // Nuxt Robots Configuration (https://nuxtseo.com/docs/robots/getting-started/introduction)
   robots: {
+    // enabled: false,
     // blockAiBots: true,
     // blockNonSeoBots: true,
     // credits: true,
+    sitemap: `${process.env.NUXT_SITE_URL}/sitemap.xml`,
+    disallow: [
+      "/partials/", // Block all that includes "partials"
+      "*/partials/", // Block all that includes "partials"
+    ],
   },
   // Nuxt OG Image Configuration (https://nuxtseo.com/docs/og-image/getting-started/introduction)
   ogImage: {
@@ -61,7 +82,11 @@ export default defineNuxtConfig({
   },
   // Nuxt Sitemap Configuration (https://nuxtseo.com/docs/sitemap/getting-started/installation)
   sitemap: {
-    enabled: false,
+    // enabled: false,
+    exclude: [
+      // all routes that include "partials"
+      /partials/,
+    ],
   },
   // Nuxt Schema.org Configuration (https://nuxtseo.com/docs/schema-org/getting-started/introduction)
   schemaOrg: {
@@ -109,6 +134,27 @@ export default defineNuxtConfig({
         // Nuxt Image Configuration for Static Images (https://image.nuxt.com/advanced/static-images)
         // "/_ipx/_/example.png",
       ],
+    },
+  },
+  // Nuxt SEO Utils Configuration (https://nuxtseo.com/docs/seo-utils/guides/nuxt-config-seo-meta)
+  seo: {
+    // enabled: false
+    fallbackTitle: true,
+    meta: {
+      xUaCompatible: "IE=edge",
+      viewport: "width=device-width, initial-scale=1",
+      title: "Nuxt3 Basic Starter",
+      description: "Nuxt3 Basic Starter",
+
+      creator: "Ersan Karimi",
+      author: "Ersan Karimi",
+      publisher: "Ersan Karimi",
+      applicationName: process.env.NUXT_SITE_NAME,
+
+      // Nuxt SEO Utils already sets the below tags for you
+      ogLocale: "id_ID",
+      ogType: "website",
+      // ...
     },
   },
 });
