@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/seo",
   ],
+  // Nuxt SSR Configuration (https://nuxt.com/docs/api/nuxt-config#ssr)
+  ssr: false,
   // Nuxt TypeScript Configuration (https://nuxt.com/docs/guide/concepts/typescript)
   typescript: {
     strict: true,
