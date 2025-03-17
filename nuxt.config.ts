@@ -22,6 +22,9 @@ export default defineNuxtConfig({
       // exclude: ["./github/workflows"],
     },
   },
+  css: [
+    "~/assets/css/app.css",
+  ],
   // Nuxt App Configuration (https://nuxt.com/docs/api/nuxt-config#app-1)
   app: {
     head: {
@@ -117,6 +120,7 @@ export default defineNuxtConfig({
     defaults: {
       subsets: ["latin"],
       weights: [400, 700],
+
     },
     families: [
       {
