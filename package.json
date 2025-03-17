@@ -10,12 +10,21 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "dev:generate": "nuxt generate --dotenv .env.development",
+    "prod:generate": "nuxt generate --dotenv .env.production",
+    "dev:build": "nuxt build --dotenv .env.development",
+    "prod:build": "nuxt build --dotenv .env.production",
+    "prod:generate:preview": "nuxt generate --dotenv .env.production && nuxt preview",
+    "dev:generate:preview": "nuxt generate --dotenv .env.development && nuxt preview",
+    "prod:build:preview": "nuxt build --dotenv .env.production && nuxt preview",
+    "dev:build:preview": "nuxt build --dotenv .env.development && nuxt preview"
   },
   "dependencies": {
     "@nuxt/fonts": "0.11.0",
     "@nuxt/icon": "1.11.0",
     "@nuxt/image": "1.9.0",
+    "@nuxtjs/seo": "3.0.1",
     "nuxt": "^3.16.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
