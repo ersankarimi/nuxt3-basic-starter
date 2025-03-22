@@ -4,12 +4,7 @@ import process from "node:process";
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: [
-    "@nuxt/fonts",
-    "@nuxt/icon",
-    "@nuxt/image",
-    "@nuxtjs/seo",
-  ],
+  modules: ["@nuxt/fonts", "@nuxt/icon", "@nuxt/image", "@nuxtjs/seo", "nuxt-security"],
   // Nuxt SPA Loading Template (https://nuxt.com/docs/api/nuxt-config#spaloadingtemplate)
   spaLoadingTemplate: true,
   // Nuxt SSR Configuration (https://nuxt.com/docs/api/nuxt-config#ssr)
@@ -159,6 +154,27 @@ export default defineNuxtConfig({
       ogLocale: "id_ID",
       ogType: "website",
       // ...
+    },
+  },
+  // Nuxt Security Configuration (https://nuxt-security.vercel.app/getting-started/configuration)
+  security: {
+    strict: true,
+    sri: false,
+    // corsHandler: {
+    //   origin: process.env.NUXT_PUBLIC_SITE_URL,
+    //   methods: ["GET", "POST"],
+    // },
+    headers: {
+      crossOriginResourcePolicy: "same-origin",
+      crossOriginOpenerPolicy: "same-origin",
+      crossOriginEmbedderPolicy: "credentialless",
+      contentSecurityPolicy: {
+        "upgrade-insecure-requests": true,
+        "img-src": ["'self'", "data:", "https://res.cloudinary.com", "https://placehold.co"],
+        "connect-src": ["'self'", "https://api.iconify.design", process.env.NUXT_PUBLIC_API_URL?.toString()?.replace("/your/api", "") || ""], // Allow external API,
+        "script-src": ["'self'", "'https'", "'unsafe-inline'", "'unsafe-eval'", "'strict-dynamic'", "'nonce-{{nonce}}'"],
+        "style-src": ["'self'", "'https'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      },
     },
   },
 });
