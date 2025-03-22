@@ -160,10 +160,6 @@ export default defineNuxtConfig({
   security: {
     strict: true,
     sri: false,
-    // corsHandler: {
-    //   origin: process.env.NUXT_PUBLIC_SITE_URL,
-    //   methods: ["GET", "POST"],
-    // },
     headers: {
       crossOriginResourcePolicy: "same-origin",
       crossOriginOpenerPolicy: "same-origin",
@@ -171,10 +167,9 @@ export default defineNuxtConfig({
       contentSecurityPolicy: {
         "upgrade-insecure-requests": true,
         "img-src": ["'self'", "data:", "https://res.cloudinary.com", "https://placehold.co"],
-        "connect-src": ["'self'", "https://api.iconify.design", process.env.NUXT_PUBLIC_API_URL?.toString()?.replace("/your/api", "") || ""], // Allow external API,
-        "script-src": ["'self'", "'https'", "'unsafe-inline'", "'unsafe-eval'", "'strict-dynamic'", "'nonce-{{nonce}}'"],
-        "style-src": ["'self'", "'https'", "'unsafe-inline'", "'nonce-randomNonceValue'", "https://fonts.googleapis.com"],
-
+        "connect-src": ["'self'", "https://api.iconify.design", process.env.NUXT_PUBLIC_API_URL?.toString()?.replace("/your/api", "") || ""],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "'strict-dynamic'", "'nonce-{nonce}'"],
+        "style-src": ["'self'", "'unsafe-inline'", "'nonce-{nonce}'", "https://fonts.googleapis.com"],
       },
     },
   },
