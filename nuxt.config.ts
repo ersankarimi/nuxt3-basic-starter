@@ -170,10 +170,8 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy: "credentialless",
       contentSecurityPolicy: {
         "upgrade-insecure-requests": true,
-        "img-src": ["'self'", "data:", "https://res.cloudinary.com", "https://placehold.co"],
+        "img-src": ["'self'", "data:"],
         "connect-src": ["'self'", "https://api.iconify.design", process.env.NUXT_PUBLIC_API_URL?.toString()?.replace("/your/api", "") || ""], // Allow external API,
-        "script-src": ["'self'", "'https'", "'unsafe-inline'", "'unsafe-eval'", "'strict-dynamic'", "'nonce-{{nonce}}'"],
-        "style-src": ["'self'", "'https'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       },
     },
   },
